@@ -13,7 +13,7 @@ class gift {
     private int direction;
 
     public gift(Image img) {
-        timerUpdate = new Timer(30, new ActionListener() {
+        timerUpdate = new Timer(5, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 down();
             }

@@ -69,24 +69,41 @@ class field extends JPanel {
         });
 
         timerDraw.start();
+
+        lifeTimer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lifelong_sec++;
+            }
+        });
+
+        lifeTimer.start();
     }
 
     public void paintComponent(Graphics gr) {
         super.paintComponent(gr);
         gr.drawImage(background, 0, 0, null);
         gr.drawImage(hat, x, 620, null);
+        gr.setFont(new Font("Courier New,", 1, 30));
+        setForeground(Color.LIGHT_GRAY);
+        gr.drawString("Lifelong: " + String.valueOf(lifelong_sec) + " sec", 0, 50);
+        gr.drawString("Pokemons: " + String.valueOf(caught_pokemons), 0, 100);
 
         for (int i = 0; i < 9; i++) {
             gameGifts[i].draw(gr);
             if (gameGifts[i].act) {
                 if (gameGifts[i].y + gameGifts[i].img.getHeight(null) >= 700)
                     if (Math.abs(gameGifts[i].x - x) > 100) {
-                        gr.drawImage(end_game, 0, 0, null);
+                        gr.drawImage(background, 0,0, null);
+                        gr.drawImage(end_game, 500, 200, null);
+                        gr.drawString("Lifelong: " + String.valueOf(lifelong_sec) + " sec", 580, 550);
+                        gr.drawString("Pokemons: " + String.valueOf(caught_pokemons), 590, 580);
                         timerDraw.stop();
                         timerUpdate.stop();
                         break;
                     } else {
                         caught_pokemons++;
+                        gr.drawString("Pokemons: " + String.valueOf(caught_pokemons), 0, 800);
                         gameGifts[i].act = false;
                     }
             }
