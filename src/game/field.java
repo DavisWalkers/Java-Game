@@ -103,7 +103,6 @@ class field extends JPanel {
                         break;
                     } else {
                         caught_pokemons++;
-                        gr.drawString("Pokemons: " + String.valueOf(caught_pokemons), 0, 800);
                         gameGifts[i].act = false;
                     }
             }
